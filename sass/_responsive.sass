@@ -1,0 +1,74 @@
+// Responsive breakpoints
+
+$screen:    "screen"
+$print:     "print"
+
+$phone-max: 400px
+$tablet-max: 800px
+
+$phone:         "#{$screen} and (max-width: 400px)"
+$tablet:        "#{$screen} and (min-width: 401px) and (max-width: 800px)"
+$phoneOrTablet: "#{$screen} and (max-width: 800px)"
+$desktop:       "#{$screen} and (min-width: 801px)"
+
+@mixin breakpoint($point)
+   @if $point == desktop
+      @media #{$desktop}
+         @content
+   @else if $point == phone
+      @media #{$phone}
+         @content
+   @else if $point == tablet
+      @media #{$tablet}
+         @content
+   @else if $point == phoneOrTablet
+      @media #{$phoneOrTablet}
+         @content
+
+@mixin showPhoneOrTablet()
+   display: none
+   @include breakpoint(phoneOrTablet)
+      display: inherit
+
+@mixin hidePhoneOrTablet()
+   @include breakpoint(phoneOrTablet)
+      display: none
+
+@mixin showPhone()
+   display: none
+   @include breakpoint(phone)
+      display: inherit
+
+@mixin hidePhone()
+   @include breakpoint(phone)
+      display: none
+
+@mixin showTablet()
+   display: none
+   @include breakpoint(tablet)
+      display: inherit
+
+@mixin hideTablet()
+   @include breakpoint(tablet)
+      display: none
+
+.hidePrint
+   @media #{$print}
+      display: none
+
+.showPrint
+   display: none
+   @media #{$print}
+      display: inherit
+
+@mixin screen()
+   @media #{$screen}
+      @content
+
+@mixin print()
+   @media #{$print}
+      @content
+
+@mixin flexbox()
+   display: -webkit-flex
+   display: flex

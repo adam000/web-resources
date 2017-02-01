@@ -1,0 +1,5 @@
+<ul class="list">
+    {{ range $name, $value := . }}
+    <li><span class="name">{{ $name }}<span class="separator"> - </span><span class="value">{{ $value }}</span></li>
+    {{ end }}
+</ul>
